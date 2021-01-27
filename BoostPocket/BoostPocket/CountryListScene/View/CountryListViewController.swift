@@ -73,7 +73,7 @@ class CountryListViewController: UIViewController {
                 cell.accessoryType = .checkmark
             }
             
-            cell.configure(with: countryItemViewModel)
+            cell.countryItemViewModel = countryItemViewModel
             return cell
         })
     }

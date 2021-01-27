@@ -15,14 +15,17 @@ class CountryCell: UITableViewCell {
     @IBOutlet weak var countryNameLabel: UILabel!
     @IBOutlet weak var countryFlagImageView: UIImageView!
     
+    var countryItemViewModel: CountryItemPresentable! {
+        didSet {
+            countryNameLabel.text = countryItemViewModel.name
+            if let flagImage = UIImage(data: countryItemViewModel.flag) {
+                countryFlagImageView.image = flagImage
+            }
+        }
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         self.accessoryType = .none
-    }
-    
-    func configure(with country: CountryItemViewModel) {
-        countryNameLabel.text = country.name
-        guard let flagImage = UIImage(data: country.flag) else { return }
-        countryFlagImageView.image = flagImage
     }
 }
